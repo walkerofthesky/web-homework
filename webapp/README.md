@@ -58,7 +58,7 @@ The completed homework assignment must have a usable interface that loads dynami
 
 ## Objectives
 
- * Write a basic user inerface that allows users to enter, edit, and remove transactions.
+ * Write a basic user interface that allows users to enter, edit, and remove transactions.
 
    * Bonus points for adding other data models such as users and merchants that can be input as part of the transaction.
 
@@ -68,7 +68,7 @@ The completed homework assignment must have a usable interface that loads dynami
 
  * Seed the database.  Possible solutions include:
    * producing a CSV file and endpoint that allows the file to be uploaded through the web server
-   * modifying the web server post install script to ensure the databse is correctly seeded instead
+   * modifying the web server post install script to ensure the database is correctly seeded instead
 
  * Add an i18n setting.  This is easily done in a couple of ways.
    * Via URL (eg `?i18n=true`) that turns all of the display text into gibberish (eg replace the front with something that does not use a latin based charset).
