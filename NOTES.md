@@ -15,3 +15,5 @@ The instructions for how to start the `mongodb` process differed a little in the
 I list them here in order that I completed them:
 
 1. Seed the database. I used a NPM package, `mongoose-seed`, and created a file named `seed.js` in the root of the webserver project. It runs after the `mongodb` script automatically because I named the script `postmongodb`. I did this to ensure that Mongo DB was up and running before trying to seed it.
+
+2. Add a user interface to allow entry of new transactions. I decided to use Material UI to speed up the process for common elements, like the dialog, buttons and form fields. It has been a while since I used GraphQL, so I had to spend some time looking how to do things. It will come back to me as I use it more. I left out editing and removing transactions at this point for sake of time.
