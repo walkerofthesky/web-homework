@@ -41,10 +41,27 @@ const mutation = new GraphQLObjectType({
       },
       async resolve(parentValue, { id, updateData }) {
         try {
-          const updatedTransaction = await TransactionModel.findByIdAndUpdate(id, updateData);
-          return updatedTransaction;
+          const updatedTransaction = await TransactionModel.findByIdAndUpdate(id, updateData, { new: true });
+          return {
+            ...updatedTransaction._doc,
+            id: updatedTransaction._id
+          };
         } catch (err) {
           console.err('error finding and updating transaction', err);
+        }
+      }
+    },
+    deleteTransaction: {
+      type: TransactionType,
+      args: {
+        id: { type: GraphQLString }
+      },
+      async resolve(parentValue, { id }) {
+        try {
+          const deletedTransaction = await TransactionModel.findByIdAndDelete(id);
+          return { id: deletedTransaction._id };
+        } catch (err) {
+          console.err('error deleting transaction', err);
         }
       }
     }

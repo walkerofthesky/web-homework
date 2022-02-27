@@ -18,4 +18,4 @@ I list them here in order that I completed them:
 
 2. Add a user interface to allow entry of new transactions. I decided to use Material UI to speed up the process for common elements, like the dialog, buttons and form fields. It has been a while since I used GraphQL, so I had to spend some time looking how to do things. It will come back to me as I use it more. I left out editing and removing transactions at this point for sake of time.
 
-3. Allow users to edit existing transactions. This included backend and frontend work.
+3. Allow users to edit and delete existing transactions. This included backend and frontend work. Went with `window.confirm` for speed before performing a delete operation, but would replace it with a modal with more time.

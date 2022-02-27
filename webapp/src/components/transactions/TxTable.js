@@ -19,7 +19,13 @@ const styles = css`
 
 const makeDataTestId = (transactionId, fieldName) => `transaction-${transactionId}-${fieldName}`
 
-export function TxTable ({ data, editTransaction }) {
+export function TxTable ({ data, deleteTransaction, editTransaction }) {
+  const handleDelete = (id) => {
+    if (window.confirm(`Do you wish to delete transaction ${id}?`)) {
+      deleteTransaction(id)
+    }
+  }
+
   return (
     <table css={styles}>
       <tbody>
@@ -46,7 +52,7 @@ export function TxTable ({ data, editTransaction }) {
               <td data-testid={makeDataTestId(id, 'amount')}>{amount}</td>
               <td data-testid={makeDataTestId(id, 'actions')}>
                 <button className='edit unstyled-button' onClick={() => editTransaction(tx)}><Edit /></button>
-                <button className='unstyled-button'><Delete /></button>
+                <button className='unstyled-button' onClick={() => handleDelete(id)}><Delete /></button>
               </td>
             </tr>
           )
@@ -68,5 +74,6 @@ TxTable.propTypes = {
       amount: number
     })
   ),
+  deleteTransaction: func.isRequired,
   editTransaction: func.isRequired
 }

@@ -41,6 +41,11 @@ export const TransactionModal = ({ close, open, refreshTable, transaction }) => 
   const [addTransaction, addRes] = useMutation(AddTransactionGQL)
   const [editTransaction, editRes] = useMutation(EditTransaction)
 
+  const handleClose = () => {
+    close()
+    setFormFields({ ...FORM_FIELDS_DEFAULT })
+  }
+
   const handleChangeTransactionType = (e) => {
     const { value } = e.target
 
@@ -135,7 +140,7 @@ export const TransactionModal = ({ close, open, refreshTable, transaction }) => 
     if (!isFormSubmitted || addRes.loading || editRes.loading) return
     setIsFormSubmitted(false)
     refreshTable()
-    close()
+    handleClose()
   }, [addRes.loading, editRes.loading, isFormSubmitted])
 
   if (addRes.error || editRes.error) {
@@ -143,7 +148,7 @@ export const TransactionModal = ({ close, open, refreshTable, transaction }) => 
   }
 
   return (
-    <Dialog css={styles} onClose={close} open={open}>
+    <Dialog css={styles} onClose={handleClose} open={open}>
       <DialogTitle>Add Transaction</DialogTitle>
       <DialogContent>
         <form className='form' onSubmit={handleSubmit}>
@@ -166,7 +171,7 @@ export const TransactionModal = ({ close, open, refreshTable, transaction }) => 
         </form>
       </DialogContent>
       <DialogActions>
-        <Button disabled={editRes.loading || addRes.loading} onClick={close}>Cancel</Button>
+        <Button disabled={editRes.loading || addRes.loading} onClick={handleClose}>Cancel</Button>
         <Button disabled={editRes.loading || addRes.loading} onClick={handleSubmit} variant='contained'>
           {transaction?.id ? 'Edit' : 'Add'}
         </Button>
