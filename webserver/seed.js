@@ -6,7 +6,6 @@ const data = [
     model: 'transaction',
     documents: [
       {
-        id: '5d5c1f747e01cd704f18f863',
         user_id: 'employee4',
         description: 'cleaningsupplies',
         merchant_id: 'walmart',
@@ -15,7 +14,6 @@ const data = [
         amount: 150
       },
       {
-        id: '5d5c1f747e01cd704f18f864',
         user_id: 'employee3',
         description: 'refund',
         merchant_id: 'walmart',
@@ -24,7 +22,6 @@ const data = [
         amount: 250
       },
       {
-        id: '5d5c1f747e01cd704f18f865',
         user_id: 'employee5',
         description: 'refund',
         merchant_id: 'walmart',
@@ -33,12 +30,35 @@ const data = [
         amount: 100
       }
     ]
+  },
+  {
+    model: 'user',
+    documents: [
+      {
+        // id: 'employee3',
+        firstName: 'Leonardo',
+        lastName: 'DiCaprio',
+        dob: '1974-11-11T07:00:00.000Z'
+      },
+      {
+        // id: 'employee4',
+        firstName: 'Jonah',
+        lastName: 'Hill',
+        dob: '1983-12-20T07:00:00.000Z'
+      },
+      {
+        // id: 'employee5',
+        firstName: 'Margo',
+        lastName: 'Robbie',
+        dob: '1990-07-02T07:00:00.000Z'
+      }
+    ]
   }
 ];
 
 seeder.connect(MONGO_URI, () => {
-  seeder.loadModels(['./data-models/Transaction']);
-  seeder.clearModels(['transaction'], () => {
+  seeder.loadModels(['./data-models/Transaction', './data-models/User']);
+  seeder.clearModels(['transaction', 'user'], () => {
     seeder.populateModels(data, (err, done) => {
       if (err) {
         return console.error('Error while seeding db', err);

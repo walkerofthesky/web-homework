@@ -1,58 +1,72 @@
 import React from 'react'
-import { arrayOf, string, bool, number, shape } from 'prop-types'
+import { arrayOf, func, string, bool, number, shape } from 'prop-types'
 import { css } from '@emotion/core'
+import { Check, Delete, Edit } from '@mui/icons-material'
 
 const styles = css`
- .header {
-   font-weight: bold;
- }
+  .edit {
+    margin-right: 8px;
+  }
+  .header {
+    font-weight: bold;
+  }
+  .unstyled-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
 `
 
 const makeDataTestId = (transactionId, fieldName) => `transaction-${transactionId}-${fieldName}`
 
-export function TxTable ({ data }) {
+export function TxTable ({ data, editTransaction }) {
   return (
     <table css={styles}>
       <tbody>
         <tr className='header'>
-          <td >ID</td>
-          <td >User ID</td>
-          <td >Description</td>
-          <td >Merchant ID</td>
-          <td >Debit</td>
-          <td >Credit</td>
-          <td >Amount</td>
+          <td>ID</td>
+          <td>User ID</td>
+          <td>Description</td>
+          <td>Merchant ID</td>
+          <td>Debit</td>
+          <td>Credit</td>
+          <td>Amount</td>
+          <td />
         </tr>
-        {
-          data.map(tx => {
-            const { id, user_id: userId, description, merchant_id: merchantId, debit, credit, amount } = tx
-            return (
-              <tr data-testid={`transaction-${id}`} key={`transaction-${id}`}>
-                <td data-testid={makeDataTestId(id, 'id')}>{id}</td>
-                <td data-testid={makeDataTestId(id, 'userId')}>{userId}</td>
-                <td data-testid={makeDataTestId(id, 'description')}>{description}</td>
-                <td data-testid={makeDataTestId(id, 'merchant')}>{merchantId}</td>
-                <td data-testid={makeDataTestId(id, 'debit')}>{debit}</td>
-                <td data-testid={makeDataTestId(id, 'credit')}>{credit}</td>
-                <td data-testid={makeDataTestId(id, 'amount')}>{amount}</td>
-              </tr>
-            )
-          })
-        }
+        {data.map(tx => {
+          const { id, user_id: userId, description, merchant_id: merchantId, debit, credit, amount } = tx
+          return (
+            <tr data-testid={`transaction-${id}`} key={`transaction-${id}`}>
+              <td data-testid={makeDataTestId(id, 'id')}>{id}</td>
+              <td data-testid={makeDataTestId(id, 'userId')}>{userId}</td>
+              <td data-testid={makeDataTestId(id, 'description')}>{description}</td>
+              <td data-testid={makeDataTestId(id, 'merchant')}>{merchantId}</td>
+              <td data-testid={makeDataTestId(id, 'debit')}>{debit && <Check />}</td>
+              <td data-testid={makeDataTestId(id, 'credit')}>{credit && <Check />}</td>
+              <td data-testid={makeDataTestId(id, 'amount')}>{amount}</td>
+              <td data-testid={makeDataTestId(id, 'actions')}>
+                <button className='edit unstyled-button' onClick={() => editTransaction(tx)}><Edit /></button>
+                <button className='unstyled-button'><Delete /></button>
+              </td>
+            </tr>
+          )
+        })}
       </tbody>
     </table>
-
   )
 }
 
 TxTable.propTypes = {
-  data: arrayOf(shape({
-    id: string,
-    user_id: string,
-    description: string,
-    merchant_id: string,
-    debit: bool,
-    credit: bool,
-    amount: number
-  }))
+  data: arrayOf(
+    shape({
+      id: string,
+      user_id: string,
+      description: string,
+      merchant_id: string,
+      debit: bool,
+      credit: bool,
+      amount: number
+    })
+  ),
+  editTransaction: func.isRequired
 }

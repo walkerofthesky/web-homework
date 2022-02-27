@@ -1,0 +1,11 @@
+mutation EditTransaction($id: String, $updateData: TransactionInput) {
+  editTransaction(id: $id, updateData: $updateData) {
+    amount
+    credit
+    debit
+    description
+    merchant_id
+    user_id
+    id
+  }
+}
