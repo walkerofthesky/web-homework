@@ -6,7 +6,8 @@
     "build": "webpack -d",
     "reset": "rm -rf node_modules 2> /dev/null && yarn boot",
     "start": "webpack-dev-server -d --hot",
-    "test": "jest --coverage"
+    "test": "jest --coverage",
+    "test:watch": "jest --watch"
   },
   "resolutions": {
     "elliptic": " 6.5.3",
@@ -40,7 +41,7 @@
       "node_modules"
     ],
     "moduleNameMapper": {
-      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/assetMock.js"
+      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/mocks/assetMock.js"
     },
     "snapshotSerializers": [
       "jest-emotion/serializer"
@@ -60,16 +61,19 @@
     "@apollo/react-hoc": "4.0.0",
     "@apollo/react-hooks": "4.0.0",
     "@emotion/core": "10.0.10",
-    "@emotion/styled": "10.0.12",
+    "@emotion/react": "^11.8.1",
+    "@emotion/styled": "^11.8.1",
+    "@mui/icons-material": "^5.4.2",
+    "@mui/material": "^5.4.2",
     "axios": "0.21.1",
     "emotion-theming": "10.0.10",
     "graphql": "14.3.1",
     "graphql-tag": "^2.10.1",
     "prop-types": "15.7.2",
-    "react": "16.8.6",
-    "react-dom": "16.8.6",
+    "react": "^17",
+    "react-dom": "^17",
     "react-hot-loader": "4.11.0",
-    "react-router-dom": "5.0.1"
+    "react-router-dom": "^5"
   },
   "devDependencies": {
     "@apollo/react-testing": "4.0.0",
@@ -150,8 +154,9 @@
     "react-addons-perf": "15.4.2",
     "react-addons-test-utils": "15.6.2",
     "react-stub-context": "0.8.1",
-    "react-test-renderer": "16.8.6",
+    "react-test-renderer": "^17",
     "regenerator-runtime": "0.13.7",
+    "url-loader": "^4.1.1",
     "webpack": "4.33.0",
     "webpack-cli": "3.3.4",
     "webpack-dev-server": "3.7.1"
