@@ -39,7 +39,7 @@ const styles = css`
   }
 `
 
-const makeDataTestId = (transactionId, fieldName) => `transaction-${transactionId}-${fieldName}`
+export const makeDataTestId = (transactionId, fieldName) => `transaction-${transactionId}-${fieldName}`
 
 export function TxTable ({ data, deleteTransaction, editTransaction }) {
   const handleDelete = (id) => {
@@ -75,8 +75,8 @@ export function TxTable ({ data, deleteTransaction, editTransaction }) {
               <TableCell data-testid={makeDataTestId(id, 'credit')}>{credit && <Check />}</TableCell>
               <TableCell data-testid={makeDataTestId(id, 'amount')}>{amount}</TableCell>
               <TableCell data-testid={makeDataTestId(id, 'actions')}>
-                <button className='edit unstyled-button' onClick={() => editTransaction(tx)}><Edit /></button>
-                <button className='unstyled-button' onClick={() => handleDelete(id)}><Delete /></button>
+                <button className='edit unstyled-button' data-testid={makeDataTestId(id, 'edit')} onClick={() => editTransaction(tx)}><Edit /></button>
+                <button className='unstyled-button' data-testid={makeDataTestId(id, 'delete')} onClick={() => handleDelete(id)}><Delete /></button>
               </TableCell>
             </TableRow>
           )

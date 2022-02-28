@@ -6,7 +6,8 @@
     "build": "webpack -d",
     "reset": "rm -rf node_modules 2> /dev/null && yarn boot",
     "start": "webpack-dev-server -d --hot",
-    "test": "jest --coverage"
+    "test": "jest --coverage",
+    "test:watch": "jest --watch"
   },
   "resolutions": {
     "elliptic": " 6.5.3",
@@ -40,7 +41,7 @@
       "node_modules"
     ],
     "moduleNameMapper": {
-      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/assetMock.js"
+      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/mocks/assetMock.js"
     },
     "snapshotSerializers": [
       "jest-emotion/serializer"
