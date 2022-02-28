@@ -39,6 +39,13 @@ const eslintConfig = {
   exclude: /\/node_modules\/(?!apollo-.*?|react-apollo)/
 }
 
+const fontConfig = {
+  test: /\.(ttf|woff|woff2)$/i,
+  use: {
+    loader: 'url-loader'
+  }
+}
+
 const graphQlConfig = {
   test: GRAPH_QL_FILE_REGEX,
   exclude: NODE_MODULES_DIR_REGEX,
@@ -54,6 +61,7 @@ const rules = [
     include: NODE_MODULES_DIR_REGEX,
     type: 'javascript/auto'
   },
+  fontConfig,
   graphQlConfig
 ]
 
