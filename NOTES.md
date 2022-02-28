@@ -21,3 +21,5 @@ I list them here in order that I completed them:
 3. Allow users to edit and delete existing transactions. This included backend and frontend work. Went with `window.confirm` for speed before performing a delete operation, but would replace it with a modal with more time.
 
 4. Add an i18n setting. I added a new font, which will display gibberish when the URL params contain `?i18n=true`. I had to update the webpack config to get the added font to load.
+
+5. Improved styling. Use the MUI table components, improve the navigation styling, set a max width on the layout container and center it horizontally. Add a little animation and color, yet keep it simple.

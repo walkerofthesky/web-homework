@@ -60,11 +60,38 @@ const i18nStyle = css`
 const layoutStyle = css`
     display: grid;
     grid-row-gap: 24px;
+    margin: 0 auto;
+    max-width: 1275px;
     padding: 8px;
 `
 
 const navStyle = css`
   grid-row: 1;
+  padding: 8px 16px;
+
+  a {
+    color: #111;
+    font-size: 1.25rem;
+    position: relative;
+    text-decoration: none;
+
+    &::after {
+      content: "";
+      position: absolute;
+      bottom: -6px;
+      left: 0;
+      width: 100%;
+      border-top: 2px solid #000;
+      transition: transform .3s ease-out;
+      transform: scaleX(0);
+    }
+
+    &:hover {
+      &::after {
+        transform: scaleX(1);
+      }
+    }
+  }
 
   & > ul {
       display: flex;
@@ -73,7 +100,7 @@ const navStyle = css`
   }
 
   & > ul > li:not(:first-of-type) {
-    margin-left: 16px;
+    margin-left: 24px;
   }
 `
 
